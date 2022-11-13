@@ -15,7 +15,7 @@ app = Flask(__name__)
 def index():
     return ("Hello World")
 
-@app.route('/predict', methods=['GET'])
+@app.route('/predict/', methods=['GET'])
 def predict():
     result=request.args
     data=[[
