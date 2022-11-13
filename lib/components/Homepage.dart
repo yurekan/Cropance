@@ -75,7 +75,10 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
               onTap: () {
-                Navigator.of(context).pushNamed(LeafPredictor.routeName);
+                Navigator.of(context).pushNamed(
+                    CropRecommender.routeName //TODO: Add the route name
+                );
+                
               },
             ),
             InkWell(
@@ -107,9 +110,7 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
               onTap: () {
-                Navigator.of(context).pushNamed(
-                    CropRecommender.routeName //TODO: Add the route name
-                );
+                Navigator.of(context).pushNamed(LeafPredictor.routeName);
               },
             )
           ],

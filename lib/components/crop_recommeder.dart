@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tflite/flutter_tflite.dart';
 import 'dart:math';
+import './args/result.dart';
 
 class CropRecommender extends StatefulWidget {
   static const routeName = '/crop-recommender';
@@ -19,19 +20,19 @@ class _CropRecommenderState extends State<CropRecommender> {
   TextEditingController ph = TextEditingController();
   TextEditingController rainfall = TextEditingController();
 
-  Uint8List? list;
+  // Uint8List? list;
 
-  loadModel() async {
-    await Tflite.loadModel(
-      model: "assets/model2/crop_model.tflite",
-      labels: "assets/model2/labels.txt",
-    );
-  }
+  // loadModel() async {
+  //   await Tflite.loadModel(
+  //     model: "assets/model2/crop_model.tflite",
+  //     labels: "assets/model2/labels.txt",
+  //   );
+  // }
 
-  void initState() {
-    loadModel();
-    super.initState();
-  }
+  // void initState() {
+  //   loadModel();
+  //   super.initState();
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -182,7 +183,19 @@ class _CropRecommenderState extends State<CropRecommender> {
               child: ElevatedButton(
                 child: const Text('Submit'),
                 onPressed: () {
-                  
+                  Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => Result(
+                                            
+                                              nitrogen: nitrogen.text ,
+                                              phosphorus:phosphorus.text,
+                                              potassium:potassium.text,
+                                              temperature:temperature.text,
+                                              ph:ph.text,
+                                              humidity:humidity.text,
+                                              rainfall:rainfall.text
+                                          )));
                 },
               ),
             )

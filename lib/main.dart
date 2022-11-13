@@ -4,11 +4,11 @@ import 'package:flutter/material.dart';
 import 'components/crop_recommeder.dart';
 import 'components/leaf_predictor.dart';
 import 'package:camera/camera.dart';
+import './components/args/result.dart';
 
 List<CameraDescription>? cameras;
 
-
-void main() async{
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   cameras = await availableCameras();
   runApp(const MyApp());
@@ -31,6 +31,7 @@ class MyApp extends StatelessWidget {
         HomePage.routeName: (context) => const HomePage(),
         CropRecommender.routeName: (context) => CropRecommender(),
         LeafPredictor.routeName: (context) => const LeafPredictor(),
+        // Result.routeName : (context) => Result()
       },
     );
   }
