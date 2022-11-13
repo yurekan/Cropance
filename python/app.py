@@ -3,6 +3,7 @@ import joblib
 import pandas as pd
 from flask.templating import render_template 
 import pickle
+import numpy as np
 # from pydantic import BaseModel
 import keras
 # from keras.models import load_model
@@ -14,7 +15,7 @@ app = Flask(__name__)
 def index():
     return ("Hello World")
 
-@app.route('/predict/', methods=['GET'])
+@app.route('/predict', methods=['GET'])
 def predict():
     result=request.args
     data=[[
@@ -27,7 +28,9 @@ def predict():
         float(result['rainfall'])
     ]]
 
-    model = keras.models.load_model('Crop_Model.h5')
+    data = np.asarray(data);
+
+    model = joblib.load('crop_predict_model.sav')
     prediction=model.predict(data)
     return jsonify({'prediction': str(prediction)}) 
 
