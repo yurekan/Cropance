@@ -79,30 +79,32 @@ class _LeafPredictorState extends State<LeafPredictor> {
             'Leaf Predictor',
           ),
         ),
-        body: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Container(
-                height: MediaQuery.of(context).size.height * 0.7,
-                width: MediaQuery.of(context).size.width,
-                child: !cameraController!.value.isInitialized
-                    ? Container()
-                    : AspectRatio(
-                        aspectRatio: cameraController!.value.aspectRatio,
-                        child: CameraPreview(cameraController!),
-                      ),
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Container(
+                  height: MediaQuery.of(context).size.height * 0.7,
+                  width: MediaQuery.of(context).size.width,
+                  child: !cameraController!.value.isInitialized
+                      ? Container()
+                      : AspectRatio(
+                          aspectRatio: cameraController!.value.aspectRatio,
+                          child: CameraPreview(cameraController!),
+                        ),
+                ),
               ),
-            ),
-            Text(
-              output,
-              style: const TextStyle(
-                fontWeight: FontWeight.bold, 
-                fontSize: 20 ,
-                color: Colors.black
+              Text(
+                output,
+                style: const TextStyle(
+                  fontWeight: FontWeight.bold, 
+                  fontSize: 20 ,
+                  color: Colors.black
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ));
   }
 }
