@@ -33,18 +33,19 @@ class _ResultState extends State<Result> {
     return prediction = 'apple';
   }
 
-  // Future<void> predict() async {
-  //   try {
-  //     String url =
-  //         'https://localhost:5000/predict/?nitrogen=${widget.nitrogen}&phosphorus=${widget.phosphorus}&potassium=${widget.potassium}&temperature=${widget.temperature}&humidity=${widget.humidity}&ph=${widget.ph}&rainfall=${widget.rainfall}';
-  //     http.Response data = await http.get(Uri.parse(url));
-  //     setState(() {
-  //       prediction = jsonDecode(data.body)['prediction'];
-  //     });
-  //   } catch (e) {
-  //     ScaffoldMessenger.of(context).showSnackBar(
-  //         const SnackBar(content: Text('Sorry! Some Error occured')));
-  //   }
+  Future<void> predict() async {
+  try {
+     String url =
+          'https://localhost:5000/predict/?nitrogen=${widget.nitrogen}&phosphorus=${widget.phosphorus}&potassium=${widget.potassium}&temperature=${widget.temperature}&humidity=${widget.humidity}&ph=${widget.ph}&rainfall=${widget.rainfall}';
+      http.Response data = await http.get(Uri.parse(url));
+      setState(() {
+         prediction = jsonDecode(data.body)['prediction'];
+       });
+     } catch (e) {
+       ScaffoldMessenger.of(context).showSnackBar(
+           const SnackBar(content: Text('Sorry! Some Error occured')));
+     }
+   }
 
     void initState() {
       getPred();
